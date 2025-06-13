@@ -35,7 +35,7 @@
         },
         "responses": {
           "201": {
-            "description": "Camiseta creada"
+            "description": "Camiseta creada "
           }
         }
       }
@@ -234,13 +234,8 @@
                   "nombre_comercial": { "type": "string" },
                   "rut": { "type": "string" },
                   "direccion": { "type": "string" },
-                  "categoria": {
-                    "type": "string",
-                    "enum": ["Regular", "Preferencial"]
-                  },
                   "contacto_nombre": { "type": "string" },
-                  "contacto_email": { "type": "string", "format": "email" },
-                  "porcentaje_oferta": { "type": "number", "format": "float" }
+                  "contacto_email": { "type": "string", "format": "email" }
                 }
               }
             }

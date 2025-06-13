@@ -72,6 +72,7 @@ public static function create($data) {
     $db = DB::connect();
 
     // Obtener datos del cliente para calcular precio_oferta
+    
     $stmtCliente = $db->prepare("SELECT categoria, porcentaje_oferta FROM clientes WHERE id = ?");
     $stmtCliente->execute([$data['cliente_id']]);
     $cliente = $stmtCliente->fetch(PDO::FETCH_ASSOC);
