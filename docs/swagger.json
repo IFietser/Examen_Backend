@@ -14,10 +14,50 @@
   "paths": {
     "/camisetas": {
       "get": {
-        "summary": "Listar camisetas",
+        "summary": "Obtener el listado de todas las camisetas",
         "responses": {
           "200": {
-            "description": "Lista de camisetas"
+            "description": "Lista de camisetas",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": 1,
+                    "titulo": "data",
+                    "club": "data",
+                    "pais": "data",
+                    "tipo": "data",
+                    "color": "data",
+                    "precio": "data",
+                    "precio_oferta": "data",
+                    "codigo_producto": "data",
+                    "detalles": "data",
+                    "cliente_id": 1,
+                    "tallas_disponibles": ["data"]
+                  },
+                  {
+                    "id": 2,
+                    "titulo": "data",
+                    "club": "data",
+                    "pais": "data",
+                    "tipo": "data",
+                    "color": "data",
+                    "precio": "data",
+                    "precio_oferta": "data",
+                    "codigo_producto": "data",
+                    "detalles": "data",
+                    "cliente_id": 2,
+                    "tallas_disponibles": ["data"]
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/ErrorAutenticacion"
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
           }
         }
       },
@@ -35,14 +75,31 @@
         },
         "responses": {
           "201": {
-            "description": "Camiseta creada "
+            "description": "Camiseta creada ",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "id": "1"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ErrorDatosIncompletos"
+          },
+          "401": {
+            "$ref": "#/components/responses/ErrorAutenticacion"
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
           }
         }
       }
     },
     "/camisetas/{id}": {
       "get": {
-        "summary": "Obtener una camiseta",
+        "summary": "Obtener una camiseta por ID",
         "parameters": [
           {
             "name": "id",
@@ -53,15 +110,41 @@
         ],
         "responses": {
           "200": {
-            "description": "Camiseta encontrada"
+            "description": "Camiseta encontrada",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": 1,
+                    "titulo": "data",
+                    "club": "data",
+                    "pais": "data",
+                    "tipo": "data",
+                    "color": "data",
+                    "precio": "data",
+                    "precio_oferta": "data",
+                    "codigo_producto": "data",
+                    "detalles": "data",
+                    "cliente_id": 1,
+                    "tallas_disponibles": ["data"]
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/ErrorAutenticacion"
           },
           "404": {
-            "description": "No encontrada"
+            "$ref": "#/components/responses/RegistroNoEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
           }
         }
       },
       "put": {
-        "summary": "Actualizar camiseta",
+        "summary": "Actualizar camiseta por ID",
         "parameters": [
           {
             "name": "id",
@@ -82,12 +165,31 @@
         },
         "responses": {
           "200": {
-            "description": "Camiseta actualizada"
+            "description": "Camiseta actualizada",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ErrorDatosIncompletos"
+          },
+          "401": {
+            "$ref": "#/components/responses/ErrorAutenticacion"
+          },
+          "404": {
+            "$ref": "#/components/responses/RegistroNoEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
           }
         }
       },
       "patch": {
-        "summary": "Actualizar parcialmente una camiseta",
+        "summary": "Actualizar X registro/s de una camiseta por ID",
         "parameters": [
           {
             "name": "id",
@@ -122,13 +224,32 @@
           }
         },
         "responses": {
-          "200": { "description": "Camiseta actualizada parcialmente" },
-          "400": { "description": "Solicitud inválida" },
-          "404": { "description": "Camiseta no encontrada" }
+          "200": {
+            "description": "Camiseta actualizada",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ErrorDatosIncompletos"
+          },
+          "401": {
+            "$ref": "#/components/responses/ErrorAutenticacion"
+          },
+          "404": {
+            "$ref": "#/components/responses/RegistroNoEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
+          }
         }
       },
       "delete": {
-        "summary": "Eliminar camiseta",
+        "summary": "Eliminar camiseta por ID",
         "parameters": [
           {
             "name": "id",
@@ -139,22 +260,70 @@
         ],
         "responses": {
           "200": {
-            "description": "Camiseta eliminada"
+            "description": "Camiseta eliminada",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/ErrorAutenticacion"
+          },
+          "404": {
+            "$ref": "#/components/responses/RegistroNoEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
           }
         }
       }
     },
     "/clientes": {
       "get": {
-        "summary": "Listar clientes",
+        "summary": "Obtener el listado de todos los clientes",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Lista de clientes",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": 1,
+                    "nombre_comercial": "data",
+                    "rut": "data",
+                    "direccion": "data",
+                    "categoria": "data",
+                    "contacto_nombre": "data",
+                    "contacto_email": "data",
+                    "porcentaje_oferta": "data"
+                  },
+                  {
+                    "id": 2,
+                    "nombre_comercial": "data",
+                    "rut": "data",
+                    "direccion": "data",
+                    "categoria": "data",
+                    "contacto_nombre": "data",
+                    "contacto_email": "data",
+                    "porcentaje_oferta": "data"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/ErrorAutenticacion"
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
           }
         }
       },
       "post": {
-        "summary": "Crear cliente",
+        "summary": "Crear un cliente",
         "requestBody": {
           "required": true,
           "content": {
@@ -167,14 +336,36 @@
         },
         "responses": {
           "201": {
-            "description": "Cliente creado"
+            "description": "Cliente creado",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "nombre_comercial": "data",
+                    "rut": "data",
+                    "direccion": "data",
+                    "contacto_nombre": "data",
+                    "contacto_email": "data"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ErrorDatosIncompletos"
+          },
+          "401": {
+            "$ref": "#/components/responses/ErrorAutenticacion"
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
           }
         }
       }
     },
     "/clientes/{id}": {
       "get": {
-        "summary": "Obtener cliente",
+        "summary": "Obtener un cliente por ID",
         "parameters": [
           {
             "name": "id",
@@ -184,12 +375,38 @@
           }
         ],
         "responses": {
-          "200": { "description": "Cliente encontrado" },
-          "404": { "description": "Cliente no encontrado" }
+          "200": {
+            "description": "Cliente encontrado",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": 1,
+                    "nombre_comercial": "data",
+                    "rut": "data",
+                    "direccion": "data",
+                    "categoria": "data",
+                    "contacto_nombre": "data",
+                    "contacto_email": "data",
+                    "porcentaje_oferta": "data"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/ErrorAutenticacion"
+          },
+          "404": {
+            "$ref": "#/components/responses/RegistroNoEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
+          }
         }
       },
       "put": {
-        "summary": "Actualizar cliente",
+        "summary": "Actualizar cliente por ID",
         "parameters": [
           {
             "name": "id",
@@ -210,12 +427,31 @@
         },
         "responses": {
           "200": {
-            "description": "Cliente actualizado"
+            "description": "Cliente actualizado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ErrorDatosIncompletos"
+          },
+          "401": {
+            "$ref": "#/components/responses/ErrorAutenticacion"
+          },
+          "404": {
+            "$ref": "#/components/responses/RegistroNoEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
           }
         }
       },
       "patch": {
-        "summary": "Actualizar parcialmente un cliente",
+        "summary": "Actualizar X registro/s de un cliente por ID",
         "parameters": [
           {
             "name": "id",
@@ -242,13 +478,32 @@
           }
         },
         "responses": {
-          "200": { "description": "Cliente actualizado parcialmente" },
-          "400": { "description": "Solicitud inválida" },
-          "404": { "description": "Cliente no encontrado" }
+          "200": {
+            "description": "Cliente actualizado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ErrorDatosIncompletos"
+          },
+          "401": {
+            "$ref": "#/components/responses/ErrorAutenticacion"
+          },
+          "404": {
+            "$ref": "#/components/responses/RegistroNoEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
+          }
         }
       },
       "delete": {
-        "summary": "Eliminar cliente",
+        "summary": "Eliminar cliente por ID",
         "parameters": [
           {
             "name": "id",
@@ -259,10 +514,33 @@
         ],
         "responses": {
           "200": {
-            "description": "Cliente eliminado"
+            "description": "Cliente eliminado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true
+                }
+              }
+            }
           },
           "400": {
-            "description": "Cliente con camisetas asociadas"
+            "description": "No se puede eliminar un cliente con camisetas asociadas",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "No se puede eliminar un cliente con camisetas asociadas"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/ErrorAutenticacion"
+          },
+          "404": {
+            "$ref": "#/components/responses/RegistroNoEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/ErrorInterno"
           }
         }
       }
@@ -319,6 +597,50 @@
           "contacto_nombre",
           "contacto_email"
         ]
+      }
+    },
+    "responses": {
+      "ErrorAutenticacion": {
+        "description": "Error de autenticación",
+        "content": {
+          "application/json": {
+            "example": {
+              "error": "Error de autenticación: usuario o contraseña incorrectos.",
+              "detalle": "SQLSTATE[HY000] [1045] Access denied for user 'user_todocamisetas'@'localhost' (using password: YES)"
+            }
+          }
+        }
+      },
+      "ErrorInterno": {
+        "description": "Error interno del servidor",
+        "content": {
+          "application/json": {
+            "example": {
+              "error": "No se pudo conectar a la base de datos. Por favor, intenta más tarde.",
+              "detalle": "SQLSTATE[HY000] [2002] No such file or directory"
+            }
+          }
+        }
+      },
+      "RegistroNoEncontrado": {
+        "description": "Registro no existe",
+        "content": {
+          "application/json": {
+            "example": {
+              "error": "Registro no existe"
+            }
+          }
+        }
+      },
+      "ErrorDatosIncompletos": {
+        "description": "Datos incompletos",
+        "content": {
+          "application/json": {
+            "example": {
+              "error": "Datos incompletos"
+            }
+          }
+        }
       }
     }
   }
